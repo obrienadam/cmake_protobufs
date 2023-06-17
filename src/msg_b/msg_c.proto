@@ -1,0 +1,39 @@
+syntax = "proto2";
+
+message FacePatch {
+    optional string name = 1;
+    repeated uint64 face_id = 2;
+}
+
+message Grid1D {
+    message EquidistantGrid1DInput{
+        optional double length = 1;
+        optional uint64 num_nodes = 2;
+    }
+
+    oneof input {
+        EquidistantGrid1DInput equidistant_grid_1d_input = 1;
+    }
+}
+
+message Grid2D {
+    message EquidistantGrid2DInput{
+        optional double x_length = 1;
+        optional double y_length = 2;
+        optional uint64 num_nodes_x = 3;
+        optional uint64 num_nodes_y = 4;
+    }
+
+    oneof input {
+        EquidistantGrid2DInput equidistant_grid_2d_input = 1;
+    }
+
+    repeated FacePatch face_patches = 2;
+}
+
+message Config {
+    oneof grid {
+        Grid1D grid_1d = 1;
+        Grid2D grid_2d = 2;
+    }
+}

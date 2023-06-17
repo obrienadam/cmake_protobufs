@@ -1,0 +1,9 @@
+syntax = "proto2";
+
+package dummy.package.msb_b;
+
+import "src/msg_a/msg_a.proto";
+
+message B {
+    optional dummy.package.A a = 1;
+}
